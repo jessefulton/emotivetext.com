@@ -8,6 +8,11 @@
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link href="/css/structure.css" media="screen" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+		<style type="text/css" media="screen">
+		<!--
+		.preloaded-phrases li { cursor: pointer; }.preloaded-phrases li:hover { text-decoration:underline; }dl.codes {float: left; width: 320px; margin: 16px 32px 32px; }dl.codes dt {float: left; width: 40px; padding-right: 40px; clear: left; font-weight: bold; text-align:right; }dl.codes dd {float: left; width:240px; }hr {clear: left;} ul.preloaded-phrases { margin: 16px; }ul.preloaded-phrases li { color: #29E8FF; margin-left: 16px; list-style-type: none; list-style-position:inside; }span.description { font-size: 12px; font-style:italic; color: #FFF; }
+		-->
+		</style>
 	</head>
 
 	<body>
@@ -38,11 +43,63 @@
 				<div class="content">
 					<div id="about">
 						<h2>About</h2>
-						<div></div>
+						<div>
+							<p>
+					    		The <abbr title="Emotive Text">EmoTe</abbr> API is a web service which calculates the various types and levels of emotions in a given passage of text. 
+					    		It is a partial PHP port of the <a href="http://www.synesketch.krcadinac.com/wiki/index.php?title=Main_Page">Synesketch</a> Java API,
+					    		focusing on the <a href="http://synesketch.krcadinac.com/javadoc/synesketch/emotion/package-summary.html">synesketch.emotion</a> package.
+					   			It is currently a little rough around the edges and could use some refactoring, but it works.
+					   		</p>
+					   		
+					   		
+    	
+					    	<p>
+					    		The phrase, sentence, or passage will have a general <a href="http://en.wikipedia.org/wiki/Valence_(psychology)">valence</a>
+					    		(ie., is it positive or negative?) and a general weight as to how strong the overall
+					    		emotion is. The phrase will also have a series of emotions associated with it, each with their own weights.
+					    	</p>
+					    	<p>
+					    		Weights are on a 0-1 scale. A weight closer to zero means that the emotion is very weak, whereas a weight of
+					    		one indicates that the emotion is very strong in that text. Weights are assigned to the general valence of
+					    		the text, as well as to each individual emotion present in the text.
+					    	</p>
+					    	<p>
+					    		The codes for the emotions are as follows:
+					    	</p>
+					    	<dl class="codes">
+					    		<dt>-1</dt>
+					    		<dd>Neutral</dd>
+					    		<dt>0</dt>
+					    		<dd>Happiness</dd>
+					    		<dt>1</dt>
+					    		<dd>Sadness</dd>
+					    		<dt>2</dt>
+					    		<dd>Fear</dd>
+					    		<dt>3</dt>
+					    		<dd>Anger</dd>
+					    		<dt>4</dt>
+					    		<dd>Disgust</dd>
+					    		<dt>5</dt>
+					    		<dd>Surprise</dd>
+					    	</dl>
+					    	<div class="clearfix"></div>
+
+							<p>There are plans to change the way emotions are returned, as well as adding JSONP functionality</p>					   		
+						</div>
 					</div>
 					<div id="how-to">
 						<h2>Usage</h2>
-						<div></div>
+						<div>
+							<p>
+								To use this API, <strong>please</strong> <a href="https://github.com/jessefulton/emotivetext.com/fork">fork it on github</a>
+								and create a new <abbr title"Google App Engine">GAE</abbr> instance running this code. I would love to create one service
+								to host everybody's requests, but I really don't feel like paying for that, or setting up a donation system to keep this running.
+							</p>
+							<p>
+								If you encounter any bugs, or would like any changes, please submit them <a href="https://github.com/jessefulton/emotivetext.com/issues">at github</a>.
+							</p>
+						
+						</div>
 					</div>
 					<div id="demo">
 				    	<h2>Demo</h2>
@@ -84,6 +141,14 @@
 			$("#calculus").click(function() { $("#text").val("The derivative f'(x) of a curve at a point is the slope of the line tangent to that curve at that point. This slope is determined by considering the limiting value of the slopes of secant lines. Here the function involved (drawn in red) is f(x) = x3 - x. The tangent line (in green) which passes through the point (-3/2, -15/8) has a slope of 23/4. Note that the vertical and horizontal scales in this image are different."); });
 			
 			$("#twinkle").click(function() { $("#text").val("Twinkle, twinkle, little star,\r\nHow I wonder what you are.\r\nUp above the world so high,\r\nLike a diamond in the sky.\r\nTwinkle, twinkle, little star,\r\nHow I wonder what you are!"); });
+			
+			
+			$("#tabs a").click(function() {
+				var tgt = ($(this).attr("href"));
+				$('html, body').animate({scrollTop: $(tgt).offset().top - 64}, 1000);
+				return false;
+			});
+			
 		</script>
 	</body>
 </html>
