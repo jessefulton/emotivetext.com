@@ -1,23 +1,89 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
-<!-- above set at the top of the file will set     -->
-<!-- the browser's rendering engine into           -->
-<!-- "Quirks Mode". Replacing this declaration     -->
-<!-- with a "Standards Mode" doctype is supported, -->
-<!-- but may lead to some differences in layout.   -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<title>Emotive Text (EmoTe) Web API - emotivetext.com</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Language" content="en-US" />
+		<meta name="description" content="Jesse Fulton - Artist, Programmer, Hacker" />
+		<meta name="keywords" content="artist,designer,internet art,net art,social practice,performance art,tactical media,public art,street art,open source,FLOSS,performance,front end,frontend,web,web development,jesse,fulton,jesse fulton,MFA,Santa Cruz, Los Angeles, San Francisco,ca,california,design,art,technology,geek,nerd,research,mechatronics,UCSC" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link href="/css/structure.css" media="screen" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	</head>
 
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Hello App Engine</title>
-  </head>
+	<body>
 
-  <body>
-    
-    <form action="api" method="post">
-    	<textarea name="text" rows="6" cols="50"></textarea>
-    	<input type="submit" value="submit" />
-    </form>
-    
-  </body>
+
+        <div id="tabs">
+            <ul class="navigation">
+			    <li class="active">
+			        <a id="menu-home" href="#about"><span>About</span></a>
+			    </li>
+			    <li>
+			        <a id="menu-portfolio" href="#how-to"><span>Usage</span></a>
+			    </li>
+			    <li>
+			        <a id="menu-portfolio" href="#demo"><span>Demo</span></a>
+			    </li>
+			    <li>
+			        <a id="menu-playground" href="#source"><span>Source</span></a>
+			    </li>
+			</ul>
+			<div id="headerlogo"><a href="http://jessefulton.com/"><span>home</span></a></div>
+		</div>	
+	
+		<div id="wrapper">
+            
+            <div id="main">
+                <div id="title"><h1>EmoTe API</h1></div>
+				<div class="content">
+					<div id="about">
+						<h2>About</h2>
+						<div></div>
+					</div>
+					<div id="how-to">
+						<h2>Usage</h2>
+						<div></div>
+					</div>
+					<div id="demo">
+				    	<h2>Demo</h2>
+				    	<div>
+				    		Enter your text in the form below, or try some of these sample phrases:
+				    		<ul class="preloaded-phrases">
+				    			<li id="hurt-lyrics">The lyrics to Nine Inch Nails' song "Hurt" <span class="description">(happiness, fear, and anger with a strong negative valence)</span></li>
+				    			<li id="i-have-a-dream">Excerpt from Martin Luther King Jr.'s "I Have a Dream" speech <span class="description">(happiness, anger, and surprise)</span></li>
+				    			<li id="hamlet">Excerpt from Hamlet <span class="description">(slight happiness, slight sadness, weak general negative valence)</span></li>
+				    			<li id="calculus">A brief explanation of Derivatives <span class="description">(very weak fear, very weak general negative valence)</span></li>
+				    			<li id="twinkle">Twinkle Twinkle Little Star <span class="description">(surprise, strong positive general valence)</span></li>
+				    		</ul>
+				    	</div>
+				    	<div>
+				    		<form enctype="application/x-www-form-urlencoded" action="api" method="post">
+								<div>
+									<textarea name="text" id="text" rows="24" cols="80"></textarea>
+								</div>
+								<div>
+									<input type="submit" name="send" id="send" value="EmoTe!" />
+								</div>
+							</form>    	
+						</div>
+					</div>
+					<div id="source">
+						<h2>Source Code</h2>
+						<div>
+							<p>Source code for this site is open and can be found at <a href="https://github.com/jessefulton/emotivetext.com">https://github.com/jessefulton/emotivetext.com</a>.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<script type="text/javascript">
+			$("#hurt-lyrics").click(function() { $("#text").val("I hurt myself today, to see if I still feel. I focus on the pain, the only thing that's real. The needle tears a hole - the old familiar sting. I try to kill it all away, but I remember everything."); });
+			$("#i-have-a-dream").click(function() { $("#text").val("This is our hope. This is the faith that I go back to the South with. With this faith we will be able to hew out of the mountain of despair a stone of hope. With this faith we will be able to transform the jangling discords of our nation into a beautiful symphony of brotherhood. With this faith we will be able to work together, to pray together, to struggle together, to go to jail together, to stand up for freedom together, knowing that we will be free one day."); });
+			$("#hamlet").click(function() { $("#text").val("Angels and ministers of grace, defend us! Be thou a spirit or goblin damned, Bring with thee airs from heaven or blasts from hell"); });
+			$("#calculus").click(function() { $("#text").val("The derivative f'(x) of a curve at a point is the slope of the line tangent to that curve at that point. This slope is determined by considering the limiting value of the slopes of secant lines. Here the function involved (drawn in red) is f(x) = x3 - x. The tangent line (in green) which passes through the point (-3/2, -15/8) has a slope of 23/4. Note that the vertical and horizontal scales in this image are different."); });
+			
+			$("#twinkle").click(function() { $("#text").val("Twinkle, twinkle, little star,\r\nHow I wonder what you are.\r\nUp above the world so high,\r\nLike a diamond in the sky.\r\nTwinkle, twinkle, little star,\r\nHow I wonder what you are!"); });
+		</script>
+	</body>
 </html>
