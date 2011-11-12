@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<title>Emotive Text (EmoTe) Web API - emotivetext.com</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Language" content="en-US" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link href="/css/structure.css" media="screen" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+		<script type="text/javascript">
+
+			//http://www.sitepoint.com/javascript-json-serialization/
+			JSON = {};	
+			// implement JSON.stringify serialization
+			JSON.stringify = JSON.stringify || function (obj) {
+			    var t = typeof (obj);
+			    if (t != "object" || obj === null) {
+			        // simple data type
+			        if (t == "string") obj = '"'+obj+'"';
+			        return String(obj);
+			    }
+			    else {
+			        // recurse array or object
+			        var n, v, json = [], arr = (obj && obj.constructor == Array);
+			        for (n in obj) {
+			            v = obj[n]; t = typeof(v);
+			            if (t == "string") v = '"'+v+'"';
+			            else if (t == "object" && v !== null) v = JSON.stringify(v);
+			            json.push((arr ? "" : '"' + n + '":') + String(v));
+			        }
+			        return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
+			    }
+			};
+
+			function showresponse(obj) {
+				$("#jsonpOutput").text(JSON.stringify(obj));
+			}
+			/*		
+			var response = null;
+			function showresponse(obj) {
+				response = obj;
+			}
+			$(function() {
+				$("#jsonpOutput").text(JSON.stringify(response));
+			});
+			*/
+			
+		</script>
+		<script type="text/javascript" src="/api/store?text=I%20love%20the%20fact%20that%20I%20can%20use%20JSONP%20with%20the%20EmoTe%20API%20-%20it%20makes%20me%20super%20happy"></script>
+		
+	</head>
+
+	<body>
+
+
+        <div id="tabs">
+            <ul class="navigation">
+			    <li>
+			        <a id="menu-home" href="/"><span>Home</span></a>
+			    </li>
+			</ul>
+			<div id="headerlogo"><a href="http://jessefulton.com/"><span>home</span></a></div>
+		</div>	
+	
+		<div id="wrapper">
+            
+            <div id="main">
+                <div id="title"><h1>EmoTe API - JSONP Example</h1></div>
+				<div class="content">
+					<p>
+						You should see the server response below.
+					</p>
+					<div id="jsonpOutput"></div>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<script type="text/javascript" src="/api/jsonp?callback=showresponse"></script>	
+	</body>
+</html>
