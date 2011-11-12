@@ -3,8 +3,8 @@
 		<title>Emotive Text (EmoTe) Web API - emotivetext.com</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="Content-Language" content="en-US" />
-		<meta name="description" content="Jesse Fulton - Artist, Programmer, Hacker" />
-		<meta name="keywords" content="artist,designer,internet art,net art,social practice,performance art,tactical media,public art,street art,open source,FLOSS,performance,front end,frontend,web,web development,jesse,fulton,jesse fulton,MFA,Santa Cruz, Los Angeles, San Francisco,ca,california,design,art,technology,geek,nerd,research,mechatronics,UCSC" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link href="/css/structure.css" media="screen" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
@@ -46,45 +46,32 @@
 						<div>
 							<p>
 					    		The <abbr title="Emotive Text">EmoTe</abbr> API is a web service which calculates the various types and levels of emotions in a given passage of text. 
-					    		It is a partial PHP port of the <a href="http://www.synesketch.krcadinac.com/wiki/index.php?title=Main_Page">Synesketch</a> Java API,
-					    		focusing on the <a href="http://synesketch.krcadinac.com/javadoc/synesketch/emotion/package-summary.html">synesketch.emotion</a> package.
-					   			It is currently a little rough around the edges and could use some refactoring, but it works.
+					    		It exposes the <a href="http://synesketch.krcadinac.com/javadoc/synesketch/emotion/package-summary.html">synesketch.emotion</a> package
+					    		of the <a href="http://www.synesketch.krcadinac.com/wiki/index.php?title=Main_Page">Synesketch</a> Java API.
 					   		</p>
-					   		
-					   		
     	
 					    	<p>
-					    		The phrase, sentence, or passage will have a general <a href="http://en.wikipedia.org/wiki/Valence_(psychology)">valence</a>
-					    		(ie., is it positive or negative?) and a general weight as to how strong the overall
-					    		emotion is. The phrase will also have a series of emotions associated with it, each with their own weights.
+					    		The API evaluates text and determines its general <a href="http://en.wikipedia.org/wiki/Valence_(psychology)"><em>valence</em></a>
+					    		(ie., is it positive or negative?) and the strength (<em>weight</em>) of the general <em>valence</em>.
+					    		The text will also have a series of emotions associated with it, each with their own <em>weight</em>s.
 					    	</p>
 					    	<p>
-					    		Weights are on a 0-1 scale. A weight closer to zero means that the emotion is very weak, whereas a weight of
-					    		one indicates that the emotion is very strong in that text. Weights are assigned to the general valence of
-					    		the text, as well as to each individual emotion present in the text.
+					    		<em>Weight</em>s are on a <strong>0-1</strong> scale. A <em>weight</em> closer to <strong>0</strong> means that the emotion is very weak,
+					    		whereas a value near <strong>1</strong> indicates that the emotion is very strong.
+					    		<em>Weight</em>s are assigned to the general <em>valence</em> of the text, as well as to each individual emotion present in the text.
 					    	</p>
 					    	<p>
-					    		The codes for the emotions are as follows:
+					    		The possible emotions are:
 					    	</p>
-					    	<dl class="codes">
-					    		<dt>-1</dt>
-					    		<dd>Neutral</dd>
-					    		<dt>0</dt>
-					    		<dd>Happiness</dd>
-					    		<dt>1</dt>
-					    		<dd>Sadness</dd>
-					    		<dt>2</dt>
-					    		<dd>Fear</dd>
-					    		<dt>3</dt>
-					    		<dd>Anger</dd>
-					    		<dt>4</dt>
-					    		<dd>Disgust</dd>
-					    		<dt>5</dt>
-					    		<dd>Surprise</dd>
-					    	</dl>
-					    	<div class="clearfix"></div>
+					    	<ul>
+					    		<li>Happiness</li>
+					    		<li>Sadness</li>
+					    		<li>Fear</li>
+					    		<li>Anger</li>
+					    		<li>Disgust</li>
+					    		<li>Surprise</li>
+					    	</ul>
 
-							<p>There are plans to change the way emotions are returned, as well as adding JSONP functionality</p>					   		
 						</div>
 					</div>
 					<div id="how-to">
@@ -98,9 +85,32 @@
 							<p>
 								If you encounter any bugs, or would like any changes, please submit them <a href="https://github.com/jessefulton/emotivetext.com/issues">at github</a>.
 							</p>
-						
+						</div>
+						<div id="examples">
+							<h3>Examples</h3>
+							<div>
+								<h4>Using <em>POST</em></h4>
+								<div>
+									<p>
+										To use the API from a server-side technology, simply make a post request to the /api URI of your app engine instance (ie., http://emoteapi.appspot.com/api or http://localhost:8888/api)
+										and include a parameter named "text" containing the text you'd like to evaluate. The server will return a JSON-encoded response.
+									</p>
+								</div>
+								<h4>JSONP (experimental)</h4>
+								<div>
+									<p>
+										JSONP support is experimental and takes two steps. First, you must make a request to the service to store the text you'd like to be evaluated in a cookie (note that if this is done through a GET request, there may be limitations as to how long your text string can be.)
+										This request is sent to <code>/api/store</code> with a query parameter <code>text</code> containing the text.
+										After the cookie has been set, create a script tag pointing to <code>/api/jsonp</code> with an optional <code>callback</code> parameter.
+									<p>
+										<a href="/jsonp.html">See the example</a>
+									</p>
+								</div>
+								
+							</div>
 						</div>
 					</div>
+					
 					<div id="demo">
 				    	<h2>Demo</h2>
 				    	<div>
@@ -144,6 +154,8 @@
 			
 			
 			$("#tabs a").click(function() {
+				$("#tabs li").removeClass("active");
+				$(this).parent().addClass("active");
 				var tgt = ($(this).attr("href"));
 				$('html, body').animate({scrollTop: $(tgt).offset().top - 64}, 1000);
 				return false;
