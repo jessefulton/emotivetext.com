@@ -95,13 +95,20 @@
 										To use the API from a server-side technology, simply make a post request to the /api URI of your app engine instance (ie., http://emoteapi.appspot.com/api or http://localhost:8888/api)
 										and include a parameter named "text" containing the text you'd like to evaluate. The server will return a JSON-encoded response.
 									</p>
+									<p>
+										<a href="#demo">See the example</a>
+									</p>
 								</div>
 								<h4>JSONP (experimental)</h4>
 								<div>
 									<p>
-										JSONP support is experimental and takes two steps. First, you must make a request to the service to store the text you'd like to be evaluated in a cookie (note that if this is done through a GET request, there may be limitations as to how long your text string can be.)
-										This request is sent to <code>/api/store</code> with a query parameter <code>text</code> containing the text.
-										After the cookie has been set, create a script tag pointing to <code>/api/jsonp</code> with an optional <code>callback</code> parameter.
+										JSONP support is experimental. In order to use JSONP, make a GET request to the /api URI and include 
+										a <code>text</code> query parameter containing the text to be evaluated and a <code>callback</code> parameter
+										with the name of the JavaScript callback function.
+									</p>
+									<p>
+										Because JSONP operates over GET, the length of the <code>text</code> parameter may be limited by browser constraints.
+									</p>
 									<p>
 										<a href="/jsonp.html">See the example</a>
 									</p>

@@ -34,7 +34,9 @@
 			};
 
 			function showresponse(obj) {
-				$("#jsonpOutput").text(JSON.stringify(obj));
+				window.setInterval(function() {
+					$("#jsonpOutput").text(JSON.stringify(obj));
+				}, 1000);
 			}
 			/*		
 			var response = null;
@@ -47,7 +49,6 @@
 			*/
 			
 		</script>
-		<script type="text/javascript" src="/api/store?text=I%20love%20the%20fact%20that%20I%20can%20use%20JSONP%20with%20the%20EmoTe%20API%20-%20it%20makes%20me%20super%20happy"></script>
 		
 	</head>
 
@@ -69,13 +70,13 @@
                 <div id="title"><h1>EmoTe API - JSONP Example</h1></div>
 				<div class="content">
 					<p>
-						You should see the server response below.
+						<strong>You should see the server response below.</strong>
 					</p>
 					<div id="jsonpOutput"></div>
 				</div>
 			</div>
 		</div>
 		<div class="clearfix"></div>
-		<script type="text/javascript" src="/api/jsonp?callback=showresponse"></script>	
+		<script type="text/javascript" src="/api?text=I%20love%20the%20fact%20that%20I%20can%20use%20JSONP%20with%20the%20EmoTe%20API%20-%20it%20makes%20me%20super%20happy&callback=showresponse"></script>			
 	</body>
 </html>
